@@ -1,34 +1,50 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { getProduct } from "../AsyncMock"
+import CounterComponent from "./CounterComponent"
+import { CartContext } from "../context/CartContext"
+import { getSingleProduct } from "../firebase/firebase"
 
 export default function ProductDetail() {
 
-    const { prodId } = useParams()
-    const [product, setProduct] = useState({})
+
+    const [singleProd,setSingleProd] = useState()
 
     useEffect(()=>{
-        setProduct(getProduct(prodId))
-    },[prodId])
+        getSingleProduct(prodId).then((product)=>setSingleProd(product))
+    },[])
+
+
+    const { prodId } = useParams()
+
+    const [cart, setCart, addItem] = useContext(CartContext)
+    const quantity = []
+
+    const handleClick = () => {
+        addItem(singleProd, quantity)
+    }
+
 
     return (
         <>
         <div style={{display:'flex', width:'100%', alignItems:'center', justifyContent:'center'}}>
+        {singleProd && (
             <article style={{display:'flex',width:700, flexDirection:'column', minHeight:'300px',height:550 , justifyContent:'space-between', alignItems:'center', boxShadow:'0px 33px 61px -29px rgba(0,0,0,.6)', background:'#fff',  margin:7}}>
                 <div style={{width:'100%', fontSize:20, fontWeight:600, display:'flex', padding:10, background:'#fff'}}>
-                    {product.titulo}
+                    {singleProd.title}
                 </div>
                 <div style={{display:'flex', objectFit:'cover', flex:1, justifyContent:"flex-start"}}>
-                    <img style={{maxWidth:500}} src={product.imagen} alt="aks" />
+                    <img style={{maxWidth:500}} src={singleProd.image} alt="aks" />
                 </div>
                 <div style={{width:'100%', fontSize:17, display:'flex',flex:1,flexDirection:"column", padding:10, background:'#fff', justifyContent:'space-between', fontWeight:400}}>
-                    <p>Detalles:{product.detalles}</p>
-                    <p>Precio: ${product.precio}</p>
-                    <p>Stock: {product.stock}</p>
-                    <button className="btn btn-secondary" type="button">Agregar al carrito</button>
+                    <p>Detalles: {singleProd.description}</p>
+                    <p>Precio: ${singleProd.price}</p>
+                    <p>Stock: {singleProd.stock}</p>
+            
+                    <CounterComponent className="btn btn-secondary" type="button" handler={handleClick} />
                 </div>
             </article>
-        </div>
+            )}
+            </div>
             </>
     )
 }

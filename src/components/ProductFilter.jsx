@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import CardComponent from "./CardComponent";
-import { getProducts } from "../firebase/firebase";
+import { useParams } from "react-router-dom";
+import { filterProducts, getProducts } from "../firebase/firebase";
 
 
 
-export default function ProductListComponent({greeting}) {
-
+export default function ProductFilter() {
 
     const [myProds, setMyProds]=useState([])
 
@@ -14,12 +14,22 @@ export default function ProductListComponent({greeting}) {
     },[])
 
 
+    const { catId } = useParams()
+    const [categoria, setCategoria] = useState({})
+
+    useEffect(()=>{
+        setCategoria(filterProducts(catId))
+        console.log(catId)
+    },[catId])
+
+    const filtro = myProds.filter((producto) => producto.category === catId)
+
+
     return (
         <>
             <div style={{height:'90vh'}}>
-                <h1 style={{marginBottom:65}}>{greeting}</h1>
                 <div style={{display:'flex', justifyContent:'space-evenly', flexWrap:'wrap'}}>
-                {myProds.map((producto)=> (
+                {filtro.map((producto)=> (
                     <CardComponent key={producto.id} product={producto}/>
                 ))}
                 </div>
@@ -27,4 +37,3 @@ export default function ProductListComponent({greeting}) {
         </>
     )
 }
-
