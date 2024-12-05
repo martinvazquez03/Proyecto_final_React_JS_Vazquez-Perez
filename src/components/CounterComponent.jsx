@@ -1,21 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { getSingleProduct } from '../firebase/firebase'
+import React, { useState } from 'react'
 
-export default function CounterComponent({ handler}) {
-
-    const { prodId } = useParams()
-    const [product, setProduct] = useState([])
-
-    useEffect(()=>{
-        setProduct(getSingleProduct(prodId))
-    },[prodId])
+export default function CounterComponent({ stock ,handler}) {
 
     const [contador, setContador]=useState(0)
 
     const handleClickInc = () => {
-        if (contador < product.stock){
-            console.log(product.stock)
+        if (contador < stock){
             setContador(contador + 1)
         }
     }
@@ -33,7 +23,7 @@ export default function CounterComponent({ handler}) {
                 <h3>{contador}</h3>
                 <button style={{width:15, padding:"10px 20px", display:"flex", justifyContent:"center", alignItems:"center"}} onClick={handleClickInc}>+</button>
             </div>
-            <button style={{marginTop:10}} onClick={handler}>Agregar al carritoks</button>
+            <button style={{marginTop:10}} onClick={handler}>Agregar al carrito</button>
         </>
     )
 }

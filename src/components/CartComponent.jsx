@@ -9,7 +9,7 @@ export default function CartComponent() {
 
     return (
         <>
-            <div style={{display:'flex',flexDirection:'row', alignContent:'flex-start', justifyContent:'space-between',flexWrap:'wrap-reverse',width:'100%'}}>
+            <div style={{display:'flex',flexDirection:'row', alignContent:'flex-start', justifyContent:'space-between',flexWrap:'wrap',width:'100%'}}>
                 {cart.map((producto)=> (
                     <CartCardComponent style={{flex: '0 1 21%', margin: '10px'}} key={producto.id} product={producto}/>
                 ))}

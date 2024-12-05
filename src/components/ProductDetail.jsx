@@ -17,11 +17,12 @@ export default function ProductDetail() {
     const { prodId } = useParams()
 
     const [cart, setCart, addItem] = useContext(CartContext)
-    const quantity = []
 
     const handleClick = () => {
-        addItem(singleProd, quantity)
+        addItem(singleProd)
     }
+
+    
 
 
     return (
@@ -40,7 +41,7 @@ export default function ProductDetail() {
                     <p>Precio: ${singleProd.price}</p>
                     <p>Stock: {singleProd.stock}</p>
             
-                    <CounterComponent className="btn btn-secondary" type="button" handler={handleClick} />
+                    <CounterComponent className="btn btn-secondary" type="button" handler={handleClick} stock={singleProd.stock} />
                 </div>
             </article>
             )}

@@ -15,10 +15,8 @@ export function CartProvider({children}){
     }
 
     const removeItem = (itemId) => {
-        // Solo filtrar si itemId es válido
         if (itemId) {
             setCart(prevCart => {
-                // Filtramos el carrito para eliminar el item con el id que coincide
                 const updatedCart = prevCart.filter(item => item.id !== itemId);
                 return updatedCart;
         });

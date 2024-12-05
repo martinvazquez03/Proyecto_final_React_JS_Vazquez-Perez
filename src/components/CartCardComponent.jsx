@@ -16,7 +16,6 @@ export default function CartCardComponent({product}) {
                 </div>
                 <div style={{width:'100%', fontSize:17, display:'flex', padding:10, background:'#fff', justifyContent:'space-between', fontWeight:400}}>
                     ${product.price}
-                    <p>cantidad: 1</p>
                     <button className="btn btn-secondary" type="button" style={{padding:'3px 12px'}} onClick={()=>removeItem(product.id)} >-</button>
                 </div>
             </article>
