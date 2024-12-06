@@ -19,10 +19,17 @@ export default function ProductDetail() {
     const [cart, setCart, addItem] = useContext(CartContext)
 
     const handleClick = () => {
-        addItem(singleProd)
+        if (counterValue !== 0){
+            addItem({...singleProd, cantidad: counterValue}, counterValue)
+        }
     }
 
-    
+    const [counterValue, setCounterValue] = useState(0);
+
+  // Función para actualizar el estado del contador en el componente padre
+    const handleCounterChange = (newValue) => {
+        setCounterValue(newValue);
+    };
 
 
     return (
@@ -41,7 +48,7 @@ export default function ProductDetail() {
                     <p>Precio: ${singleProd.price}</p>
                     <p>Stock: {singleProd.stock}</p>
             
-                    <CounterComponent className="btn btn-secondary" type="button" handler={handleClick} stock={singleProd.stock} />
+                    <CounterComponent className="btn btn-secondary" type="button" onCounterChange={handleCounterChange} handler={handleClick} stock={singleProd.stock} />
                 </div>
             </article>
             )}

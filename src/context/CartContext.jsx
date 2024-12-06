@@ -6,8 +6,18 @@ export function CartProvider({children}){
 
     const [cart, setCart]=useState([])
 
-    const addItem = (item)=>{
-        setCart([...cart, item])
+    const addItem = (item, counterValue)=>{
+        setCart(prevCart => {
+            const existingItemIndex = prevCart.findIndex(cartItem => cartItem.id === item.id);
+    
+            if (existingItemIndex !== -1) {
+                const updatedCart = [...prevCart];
+                updatedCart[existingItemIndex].cantidad = counterValue;
+                return updatedCart;
+            } else {
+                return [...prevCart, {...item, cantidad : counterValue}];
+            }
+        });
     }
 
     const clear = (item) =>{
@@ -17,9 +27,18 @@ export function CartProvider({children}){
     const removeItem = (itemId) => {
         if (itemId) {
             setCart(prevCart => {
-                const updatedCart = prevCart.filter(item => item.id !== itemId);
+                const updatedCart = prevCart.map(item => {
+                    if (item.id === itemId) {
+                        if (item.cantidad > 1) {
+                            return { ...item, cantidad: item.cantidad - 1 };
+                        } 
+                        return null;
+                    }
+                    return item;
+                }).filter(item => item !== null);
+    
                 return updatedCart;
-        });
+            });
         }
     };
 

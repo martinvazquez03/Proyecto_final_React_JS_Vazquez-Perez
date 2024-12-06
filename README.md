@@ -1,8 +1,22 @@
-# React + Vite
+# Proyecto final React JS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Reseña del proyecto
 
-Currently, two official plugins are available:
+El proyecto consta de un E-Commerce basado en la venta de muebles, cuenta con una pagina principal, barra de navegacion con botones para el filtrado de productos, vista detallada de los productos con los detalles y el stock disponible de los mismos y por ultimo un carrito para agregar la cantidad deseada de cada producto, poder reducirla, vaciar el carrito completamente o proceder al checkout donde se pide un nombre completo y un mail para luego otorgar un id de orden generado aleatoriamente. 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Tecnologias utilizadas
+
+- React Router DOM
+- Firebase V
+- Sweet Alert 2
+- Bootstrap
+- FontAwesome
+- UUID (Generados de ids automatico aleatorio)
+
+# Caracteristicas principales
+
+1. Codigo optimizado
+2. Buenas practicas
+3. aplicación user-friendly
+
+## Visita la web

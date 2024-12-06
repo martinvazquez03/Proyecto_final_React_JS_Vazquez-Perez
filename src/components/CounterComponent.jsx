@@ -1,20 +1,26 @@
 import React, { useState } from 'react'
 
-export default function CounterComponent({ stock ,handler}) {
+export default function CounterComponent({ stock ,handler,onCounterChange}) {
 
     const [contador, setContador]=useState(0)
 
     const handleClickInc = () => {
         if (contador < stock){
-            setContador(contador + 1)
+            const newCount = contador + 1;
+            setContador(newCount);
+            onCounterChange(newCount)
         }
     }
 
     const handleClickDec = () => {
         if (contador > 0){
-            setContador(contador - 1)
+            const newCount = contador - 1;
+            setContador(newCount);
+            onCounterChange(newCount);
         }
     }
+
+
     return (
         <>
             <p style={{fontSize:20}}>cantidad: </p>
