@@ -1,5 +1,5 @@
 import './App.css'
-import NavBarComponent from './components/navBarComponent'
+import NavBarComponent from './components/NavBarComponent'
 import ProductDetail from './components/ProductDetail'
 import ProductFilter from './components/ProductFilter'
 import ProductListComponent from './components/ProductListComponent'
